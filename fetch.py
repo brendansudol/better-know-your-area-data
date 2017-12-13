@@ -50,7 +50,7 @@ def main():
     entries = list(data_by_geoid.values())
     print('total entries: {}'.format(len(entries)))
 
-    with open('data/acs-data.json', 'w') as f:
+    with open('data/acs.json', 'w') as f:
         json.dump(entries, f)
 
 
