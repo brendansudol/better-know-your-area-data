@@ -301,12 +301,6 @@ METRICS = [
         'GROSS RENT'
     ),
     Metric(
-        'population',
-        'Total population',
-        'DP05_0001E',
-        'SEX AND AGE'
-    ),
-    Metric(
         'median_age',
         'Median age (years)',
         'DP05_0017E',
@@ -358,11 +352,15 @@ METRICS = [
 
 METRIC_FIELDS = sorted(list(set(flatten(m.acs_fields for m in METRICS))))
 
-OTHER_FIELDS = [
+DESC_FIELDS = [
     'NAME',
     'GEOID',
     'SUMLEVEL',
 ]
+
+POP_FIELD = 'DP05_0001E'
+
+OTHER_FIELDS = DESC_FIELDS + [POP_FIELD]
 
 GEOS = [
     'us',

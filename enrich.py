@@ -1,6 +1,6 @@
 import json
 
-from util.metrics import METRICS, OTHER_FIELDS
+from util.metrics import METRICS, DESC_FIELDS, POP_FIELD
 
 
 def main():
@@ -14,7 +14,7 @@ def main():
         if 'Puerto Rico' in d['NAME']:
             continue
 
-        metric_data = []
+        metric_data = {}
         for m in METRICS:
 
             exp = m.expression
@@ -29,10 +29,10 @@ def main():
                     m.name, d['GEOID'], d['NAME'], m.expression, exp
                 ))
 
-            metric_data.append({'id': m.id, 'value': value})
+            metric_data[m.id] = value
 
-        entry = {field.lower(): d[field] for field in OTHER_FIELDS}
-        entry.update({'metrics': metric_data})
+        entry = {field.lower(): d[field] for field in DESC_FIELDS}
+        entry.update({'population': d[POP_FIELD], 'metrics': metric_data})
         results.append(entry)
 
     # add geom info
