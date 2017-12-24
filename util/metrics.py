@@ -21,15 +21,22 @@ class Metric:
     def acs_fields(self):
         return self.ACS_FIELD_REGEX.findall(self.expression)
 
-    def to_dict(self):
-        return {
+    def to_dict(self, detailed=False):
+        datum = {
             'id': self.id,
             'name': self.name,
-            'expression': self.expression,
             'fmt': self.fmt,
-            'acs_fields': self.acs_fields,
             'category': self.category,
         }
+
+        if detailed:
+            datum.update({
+                'expression': self.expression,
+                'acs_fields': self.acs_fields,
+                'acs_header': self.acs_header,
+            })
+
+        return datum
 
 
 METRICS = [
