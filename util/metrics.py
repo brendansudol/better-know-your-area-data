@@ -40,13 +40,13 @@ class Metric:
 
 
 METRICS = [
-    Metric(
-        'families_w_kids',
-        'Families with children under 18 years',
-        'DP02_0003PE',
-        'Social',
-        'HOUSEHOLDS BY TYPE'
-    ),
+    # Metric(
+    #     'families_w_kids',
+    #     'Families with children under 18 years',
+    #     'DP02_0003PE',
+    #     'Social',
+    #     'HOUSEHOLDS BY TYPE'
+    # ),
     Metric(
         'households_w_kids',
         'Households with 1+ people under 18 years',
@@ -197,6 +197,20 @@ METRICS = [
         'ANCESTRY'
     ),
     Metric(
+        'ancestry_polish',
+        'Polish',
+        'DP02_0138PE',
+        'Ancestry',
+        'ANCESTRY'
+    ),
+    Metric(
+        'ancestry_other',
+        'Other ancestral origin',
+        'round(100 - (DP02_0123PE + DP02_0128PE + DP02_0131PE + DP02_0134PE + DP02_0135PE + DP02_0138PE), 1)',
+        'Ancestry',
+        'ANCESTRY'
+    ),
+    Metric(
         'unemployment_rate',
         'Unemployment rate',
         'DP03_0009PE',
@@ -283,18 +297,26 @@ METRICS = [
         'INCOME AND BENEFITS',
         '$,.0f',
     ),
+    # Metric(
+    #     'median_family_income',
+    #     'Median family income',
+    #     'DP03_0086E',
+    #     'Economics',
+    #     'INCOME AND BENEFITS',
+    #     '$,.0f',
+    # ),
+    # Metric(
+    #     'mean_family_income',
+    #     'Mean family income',
+    #     'DP03_0087E',
+    #     'Economics',
+    #     'INCOME AND BENEFITS',
+    #     '$,.0f',
+    # ),
     Metric(
-        'median_family_income',
-        'Median family income',
-        'DP03_0086E',
-        'Economics',
-        'INCOME AND BENEFITS',
-        '$,.0f',
-    ),
-    Metric(
-        'mean_family_income',
-        'Mean family income',
-        'DP03_0087E',
+        'per_capita_income',
+        'Per capita income',
+        'DP03_0088E',
         'Economics',
         'INCOME AND BENEFITS',
         '$,.0f',
@@ -410,9 +432,16 @@ METRICS = [
         'RACE'
     ),
     Metric(
+        'american_indian',
+        'American Indian and Alaska Native',
+        'DP05_0061PE',
+        'Demographics',
+        'RACE'
+    ),
+    Metric(
         'other_race',
         'Some other race',
-        'round(100 - (DP05_0059PE + DP05_0060PE + DP05_0062PE), 1)',
+        'DP05_0063PE + DP05_0064PE',
         'Demographics',
         'RACE'
     ),
@@ -428,8 +457,8 @@ METRICS = [
 METRIC_FIELDS = sorted(list(set(flatten(m.acs_fields for m in METRICS))))
 
 DESC_FIELDS = [
+    'GEO_ID',
     'NAME',
-    'GEOID',
     'SUMLEVEL',
 ]
 

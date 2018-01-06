@@ -32,12 +32,15 @@ def main():
             except:
                 value = 'N/A'
                 print('Could not compute {} for {} ({}); {} -> {}'.format(
-                    m.name, d['GEOID'], d['NAME'], m.expression, exp
+                    m.name, d['GEO_ID'], d['NAME'], m.expression, exp
                 ))
 
             metric_data[m.id] = value
 
-        entry = {field.lower(): d[field] for field in DESC_FIELDS}
+        # TODO: fix this geoid vs geo_id kludge
+        gid = d['GEO_ID']
+        entry = {'geoid': gid[:3] + gid[5:]}
+        entry.update({field.lower(): d[field] for field in DESC_FIELDS[1:]})
         entry.update({'population': d[POP_FIELD], 'metrics': metric_data})
         results.append(entry)
 

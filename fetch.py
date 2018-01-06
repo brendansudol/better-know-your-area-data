@@ -10,7 +10,7 @@ API_KEY = os.environ.get('CENSUS_API_KEY')
 
 
 def make_url(fields, geo):
-    base_url = 'https://api.census.gov/data/2015/acs5/profile'
+    base_url = 'https://api.census.gov/data/2016/acs/acs5/profile'
 
     return '{}?get={}&for={}:*&key={}'.format(
         base_url,
@@ -39,7 +39,7 @@ def main():
             header, rows = results[0], results[1:]
             for row in rows:
                 entry = {key: val for key, val in zip(header, row) if key in fields}
-                geoid = entry['GEOID']
+                geoid = entry['GEO_ID']
 
                 if geoid not in data_by_geoid:
                     data_by_geoid[geoid] = entry
