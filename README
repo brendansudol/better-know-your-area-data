@@ -1,3 +1,6 @@
 🏘📊🇺🇸
 
 fetch and clean / enrich data for http://betterknowyourarea.com
+
+$ python fetch.py
+$ python enrich.py
